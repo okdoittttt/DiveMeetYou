@@ -1,0 +1,9 @@
+# .gitignore
+.DS_Store
+venv/
+.venv/
+
+
+__pycache__/
+*.pyc
+db_config.py
