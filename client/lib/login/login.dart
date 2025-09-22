@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:client/signup/signup.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -191,7 +192,12 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => const SignupPage()),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.transparent,
                                 foregroundColor: Colors.green,
