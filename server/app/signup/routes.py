@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, Form
 from sqlalchemy.orm import Session
 from app.core.db_config import get_db
 from app.domains.user.crud import create_user
+from app.domains.user.models import User
 
 router = APIRouter(prefix="/signup", tags=["Signup"])
 
@@ -13,11 +14,12 @@ def signup(
     profile_image_url: str = Form("https://yourdomain.com/default-profile.png"),
     db: Session = Depends(get_db)
 ):
-    user_data = {
-        "email": email,
-        "password": password,
-        "nickname": nickname,
-        "profile_image_url": profile_image_url
-    }
+    user_data = User(
+        email=email,
+        password=password,
+        nickname=nickname,
+        profile_image_url=profile_image_url
+    )
+
     user = create_user(db, user_data)
     return {"message": "회원가입 성공", "email": user.email}
